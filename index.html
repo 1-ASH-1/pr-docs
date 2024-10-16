@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>pr docs</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> pr docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="events/">Events</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="bf2/">bf2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="hudevent/">Hud Event</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="cf/">Community Factions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Issues/">Common Issues</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">pr docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="how-battlefield-2-hooks-python">How Battlefield 2 Hooks Python</h1>
+<h1 id="bf2-engine-interaction-with-python">BF2 Engine Interaction with Python</h1>
+<h2 id="overview">Overview</h2>
+<p>This section describes how the BF2 engine interacts with the embedded Python interpreter, detailing the initialization process, module imports, and event handling.</p>
+<h2 id="python-initialization">Python Initialization</h2>
+<p>When the BF2 engine starts, it initializes its embedded Python interpreter with its <code>sys.path</code> set to include the following directories:</p>
+<ol>
+<li><strong>Python Standard Library</strong>:</li>
+<li>
+<p>Located in the file: <code>Battlefield 2 Server/pylib-2.3.4.zip</code></p>
+</li>
+<li>
+<p><strong>Battlefield 2 Server Python Directory</strong>:</p>
+</li>
+<li>
+<p>The directory: <code>Battlefield 2 Server/python</code></p>
+</li>
+<li>
+<p><strong>Python Directory of the Current Mod</strong>:</p>
+</li>
+<li>Example: <code>Battlefield 2 Server/mods/bf2/python</code></li>
+<li>
+<p>If the server switches mods, this path will change accordingly. Note that the BF2 game engine does not switch mods automatically between rounds. A mod remains loaded until the server is manually stopped, reconfigured, and restarted.</p>
+</li>
+<li>
+<p><strong>Admin Directory</strong>:</p>
+</li>
+<li>The directory: <code>Battlefield 2 Server/admin</code></li>
+</ol>
+<h2 id="importing-the-bf2-package">Importing the <code>bf2</code> Package</h2>
+<p>The BF2 engine imports the <code>bf2</code> package, which is located in the <code>Battlefield 2 Server/python</code> directory. During this process:</p>
+<ul>
+<li>The <code>__init__.py</code> module in the <code>bf2</code> package is executed. </li>
+<li>This module imports and instantiates the basic code and objects required for the game, including <code>game.scoringCommon</code> from the active mod’s Python directory (this is the only mod-specific Python code that gets pulled in).</li>
+</ul>
+<h2 id="engine-initialization-call">Engine Initialization Call</h2>
+<p>The BF2 engine calls the <code>bf2.init_module()</code> method:</p>
+<ul>
+<li>This method imports the stats modules.</li>
+<li>The reason for this separation (instead of putting everything in the <code>__init__</code> module) is unclear.</li>
+</ul>
+<h2 id="configuration-file-processing">Configuration File Processing</h2>
+<p>The BF2 engine processes the configuration file located at <code>Battlefield 2 Server/mods/bf2/settings/ServerSettings.con</code>. </p>
+<ul>
+<li>By default, this file contains the directive: <code>sv.adminScript "default"</code>. </li>
+<li>This directive causes the default module in the <code>Battlefield 2 Server/admin</code> directory to be imported. </li>
+<li>This module primarily handles the RCon interface but includes an <code>init()</code> function that, when called, imports the <code>admin.standard_admin</code> package.</li>
+<li>This package handles features such as team autobalancing and team-kill punishment. (See the <a href="#admin-module">Admin Module</a> for more details.)</li>
+</ul>
+<h2 id="event-registration-during-startup">Event Registration During Startup</h2>
+<p>Throughout the startup process, as packages and modules are imported into the embedded Python interpreter, they register themselves to receive callbacks when specific events occur in the BF2 engine.</p>
+<h3 id="pre-game-initialization">Pre-Game Initialization</h3>
+<p>Some modules require initialization before each round begins. These modules:</p>
+<ul>
+<li>Register to receive callbacks for <code>GameStatusChangedEvents</code>.</li>
+<li>When the callback indicates that the game status is “PreGame,” the modules execute their initialization code.</li>
+</ul>
+<h2 id="event-driven-execution-during-gameplay">Event-Driven Execution During Gameplay</h2>
+<p>Once the setup is complete and the game is running, the initialized Python code operates in an event-driven mode:</p>
+<ul>
+<li>The game engine dispatches execution to Python handlers when registered events occur. </li>
+<li>For instance, when a player is killed, a <code>PlayerKilled</code> event is fired.</li>
+<li>Any modules that registered to receive callbacks for this event (e.g., a scoring module) are triggered.</li>
+</ul>
+<h2 id="end-of-round-behavior">End-of-Round Behavior</h2>
+<p>When a game round ends:</p>
+<ul>
+<li>The game engine does <strong>not</strong> restart, and neither does the embedded Python interpreter. The <code>bf2</code> packages are <strong>not</strong> reimported or reinitialized.</li>
+<li>Modules needing end-of-round cleanup:</li>
+<li>Register to receive callbacks for <code>GameStatusChangedEvents</code>.</li>
+<li>When the game status changes to “EndGame,” these modules perform their cleanup activities.</li>
+</ul>
+<p>The game engine then returns to the “PreGame” state, and pre-game initialization callback handlers are called to start the cycle again.</p>
+<h2 id="project-layout">Project layout</h2>
+<pre><code>mkdocs.yml    # The configuration file.
+docs/
+    index.md  # The documentation homepage.
+    ...       # Other markdown pages, images and other files.
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="events/" class="btn btn-neutral float-right" title="Events">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>formated by ASH taked from Project Reality’s Official Documentation</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="events/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2024-10-16 08:10:29.784022+00:00
+-->

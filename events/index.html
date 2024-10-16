@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Events - pr docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Events";
+        var mkdocs_page_input_path = "events.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> pr docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Events</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#how-events-work">How Events Work</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-playerconnect-event">Example: PlayerConnect Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#registering-events">Registering Events</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#types-of-events">Types of Events</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#standard-events">Standard Events</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#game-status-events">Game Status Events</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#trigger-events">Trigger Events</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#timer-events">Timer Events</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#descriptions-of-events">Descriptions of Events¶</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#player-events">Player Events</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#player-connect">Player Connect</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-spawn">Player Spawn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-change-teams">Player Change Teams</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-chang-eweapon">Player Chang eWeapon</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-changed-squad">Player Changed Squad</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-score">Player Score</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-heal-point">Player Heal Point</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-repair-point">Player Repair Point</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-give-ammo-point">Player Give Ammo Point</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-team-damage-point">Player Team Damage Point</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-killed">Player Killed</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-revived">Player Revived</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-death">Player Death</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-banned">Player Banned</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-kicked">Player Kicked</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-disconnect">Player Disconnect</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vehicle-and-kit-events">Vehicle and Kit Events</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#enter-vehicle">Enter Vehicle</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exit-vehicle">Exit Vehicle</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vehicle-destroyed">Vehicle Destroyed</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pickup-kit">Pickup Kit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#drop-kit">Drop Kit</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#team-events">Team Events</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#reset">Reset</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#changed-commander">Changed Commander</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#changed-squad-leader">Changed Squad Leader</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#game-events">Game Events</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#control-point-changedowner">Control Point ChangedOwner</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#time-limit-reached">Time Limit Reached</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ticket-limit-reached">Ticket Limit Reached</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#command-events">Command Events</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#console-send-command">Console Send Command</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#remote-command">Remote Command</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#client-command">Client Command</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#miscellaneous-events">Miscellaneous Events</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#player-unlocks-response">Player Unlocks Response</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-awards-response">Player Awards Response</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#chat-message">Chat Message</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#player-statsresponse">Player StatsResponse</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#update">Update</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#non-standard-events">Non-Standard Events</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#game-status-changed-event">Game Status Changed Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#trigger-event">Trigger Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#timer-event">Timer Event</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mysterious-events">Mysterious Events</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#read-me">read me</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#remove-spawn-group-event">Remove Spawn Group Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create-spawn-group-event">Create Spawn Group Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#content-check-event">Content Check Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#uav-event">UAV Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#missile-init-event">Missile Init Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unlock-event">Unlock Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#medal-event">Medal Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#toggle-free-camera-event">Toggle Free Camera Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#voip-session-event">Voip Session Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#request-event">Request Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#python-command-event">Python Command Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#end-of-round-event">End Of Round Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#begin-round-event">Begin Round Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#target-direction-event">Target Direction Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vote-event">Vote Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#voip-player-mute-event">Voip Player Mute Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#supply-drop-event">Supply Drop Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#commander-cam-event">Commander Cam Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#voip-onoff-event">Voip On/Off Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ambient-effect-area-event">Ambient Effect Area Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sticky-projectile-event">Sticky Projectile Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#artillery-event">Artillery Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#spotted-event">Spotted Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-squad-leader-event">Set Squad Leader Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-accept-order-event">Set Accept Order Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kickban-event">Kick/Ban Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rank-event">Rank Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#invite-event">Invite Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#issue-squad-order-event">Issue Squad Order Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-private-squad-event">Set Private Squad Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#change-squad-name-event">Change Squad Name Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#killed-by-event">Killed By Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#radio-message-event">Radio Message Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#commander-event">Commander Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#leave-squad-event">Leave Squad Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#join-squad-event">Join Squad Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#string-block-event">String Block Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#handle-drop-event">Handle Drop Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#handle-pickup-event">Handle Pickup Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#change-player-name-event">Change Player Name Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post-remote-event">Post Remote Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exit-vehicle-event">Exit Vehicle Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#enter-vehicle-event">Enter Vehicle Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#destroy-player-event">Destroy Player Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#destroy-object-event">Destroy Object Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create-kit-event">Create Kit Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create-object-event">Create Object Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create-player-event">Create Player Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-block-event">Data Block Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#connection-type-event">Connection Type Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#challenge-response-event">Challenge Response Event</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#challenge-event">Challenge Event</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bf2/">bf2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../hudevent/">Hud Event</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cf/">Community Factions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Issues/">Common Issues</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">pr docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Events</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="events-in-bf2-engine">Events in BF2 Engine</h1>
+<h2 id="overview">Overview</h2>
+<p>The interaction between the BF2 engine and Python programs is largely event-driven. This means that when an event happens in a game, the BF2 engine checks if any Python programs have registered to be notified of that specific event. If they have, the programs are called (this is known as a "callback"). </p>
+<p>You can think of events as “hooks” into the game engine where you can attach your own Python code.</p>
+<h3 id="how-events-work">How Events Work</h3>
+<ul>
+<li>When an event occurs, the BF2 engine searches for any Python programs that have registered for that event.</li>
+<li>If registered callbacks exist, they are executed when the event happens.</li>
+<li>Multiple callbacks can be registered for a single event, meaning all registered callbacks will be executed sequentially when the event occurs.</li>
+</ul>
+<h3 id="example-playerconnect-event">Example: PlayerConnect Event</h3>
+<p>For instance, if three different programs have registered for the “PlayerConnect” event, then when a new player connects, all three of those programs will be run. </p>
+<p>This allows for flexibility and modularity in how the game responds to various events.</p>
+<h3 id="registering-events">Registering Events</h3>
+<p>Python programs can register for specific events using the BF2 engine’s event system. By doing this, you can customize and extend the behavior of the game.</p>
+<ul>
+<li><strong>Benefits</strong>:</li>
+<li>Modular code: Different Python modules can independently handle different aspects of game behavior.</li>
+<li>Flexibility: Multiple modules can respond to the same event, allowing for complex interactions and features.</li>
+</ul>
+<h3 id="summary">Summary</h3>
+<p>Events serve as important hooks into the BF2 engine, providing opportunities to extend and customize gameplay through Python callbacks. By understanding and utilizing these events, developers can create modular, responsive, and interactive game elements.</p>
+<h2 id="types-of-events">Types of Events</h2>
+<h3 id="standard-events">Standard Events</h3>
+<p>These are events that occur during the normal course of gameplay</p>
+<p><code>host.registerHandler('EventName', pythonEventHandler[, parameter])</code></p>
+<p>This registration will typically be done in the init() method of an object, but could be done anywhere in your code.</p>
+<h3 id="game-status-events">Game Status Events</h3>
+<p>The BF2 engine generates these events when the status of the game changes.
+You register to receive callbacks for these events</p>
+<p><code>host.registerGameStatusHandler(pythonEventHandler)</code></p>
+<p>The possible states game status can be in (as enumerated in bf2.GameStatus) are:</p>
+<pre><code>NotConnected
+
+PreGame
+
+Playing
+
+Paused
+
+EndGame
+
+RestartServer
+</code></pre>
+<p>Game status events are usually used to kick off pre-game initialization or post-game clean-up processing.</p>
+<h3 id="trigger-events">Trigger Events</h3>
+<p>“Trigger” events activate when a vehicle comes within a specified distance of an object.
+Triggers are created and registered for by” bf2.triggerManager.</p>
+<pre><code>createHemiSphericalTrigger(object, triggerEventHandler, objectName, radius[, data])
+
+bf2.triggerManager.createRadiusTrigger(object, triggerEventHandler, objectName, radius[, data])
+</code></pre>
+<p>In standard Battlefield 2, trigger events are used to track scoring for flag captures (triggers activate whenever a player enters or leaves a fixed radius around each control point), as well as effects such as birds (birds are triggered to take flight whenever a player enter their trigger radius).</p>
+<h3 id="timer-events">Timer Events</h3>
+<pre><code>impimport game.realitytimer as rtimer
+
+rtimer.Timer(timerEventHandler, delta, alwaysTrigger,data)
+</code></pre>
+<p>Timer events activate when a certain amount of time has elapsed.
+In standard Battlefield 2, timer events are used to cause periodic status checks related to scoring, ranking, punishing TKs, etc.
+See the description of the bf2.Timer class for details.</p>
+<h3 id="descriptions-of-events">Descriptions of Events¶</h3>
+<p>EA/DICE have not published a list of events, but here is a list of events that have been discovered so far.</p>
+<pre><code>host.EventName(handlerParameter1, handlerParameter2, ...)
+</code></pre>
+<p>The EventName is the name of the event to register for with host. registerHandler; the parameters are the parameters your handler should receive when called.</p>
+<p>Parameters:</p>
+<p>playerObject – An instance of bf2.PlayerManager.Player</p>
+<p>playerID – As players connect to the server they are assigned playerID numbers from “1” up
+squadID (int) – Squads for each side are independently numbered beginning at “1” and increasing thereafter. Players not on a squad, including team commanders, are assigned to squad “0”
+ teamID (int) – 0 for US, 1 for China or MEC</p>
+<h2 id="player-events">Player Events</h2>
+<h3 id="player-connect">Player Connect</h3>
+<pre><code>host.PlayerConnect(playerObject)
+</code></pre>
+<p>Fires when a player connects to the game.</p>
+<h3 id="player-spawn">Player Spawn</h3>
+<pre><code>host.PlayerSpawn(playerObject, soldierObject)¶
+</code></pre>
+<p>Occurs when a player spawns, and associates a playerObject “spirit” with a soldierObject “body”.</p>
+<h3 id="player-change-teams">Player Change Teams</h3>
+<pre><code>host.PlayerChangeTeams(playerObject, humanHasSpawned)
+</code></pre>
+<p>Parameters:</p>
+<p>humanHasSpawned – 1 if the player the event is firing for is a human (as opposed to an AI). Does not fire due to team change from “setTeam”!</p>
+<h3 id="player-chang-eweapon">Player Chang eWeapon</h3>
+<pre><code>host.PlayerChangeWeapon(playerObject, oldWeaponObject, newWeaponObject)¶
+</code></pre>
+<p>Player has changed which weapon they are holding.</p>
+<h3 id="player-changed-squad">Player Changed Squad</h3>
+<pre><code>host.PlayerChangedSquad(playerObject, oldSquadID, newSquadID)
+</code></pre>
+<p>SquadID is 0 for players who are not members of any squad (including the team commander).</p>
+<h3 id="player-score">Player Score</h3>
+<pre><code>host.PlayerScore(playerObject, difference)¶
+</code></pre>
+<p>Difference is change to player’s score (positive or negative).</p>
+<h3 id="player-heal-point">Player Heal Point</h3>
+<pre><code>host.PlayerHealPoint(givingPlayerObject, receivingSoldierObject)
+</code></pre>
+<p>Occurs whenever a player heals another player; there is no indication of how much health was restored.</p>
+<h3 id="player-repair-point">Player Repair Point</h3>
+<pre><code>host.PlayerRepairPoint(givingPlayerObject, receivingVehicleObject)
+</code></pre>
+<p>Occurs whenever a player repairs a vehicle; there is no indication of how much damage was repaired.</p>
+<h3 id="player-give-ammo-point">Player Give Ammo Point</h3>
+<pre><code>host.PlayerGiveAmmoPoint(givingPlayerObject, receivingPhysicalObject)
+</code></pre>
+<p>Occurs whenever a player replenishes the ammo in another player or vehicle. 
+There is no indication of how much ammo was replenished.</p>
+<h3 id="player-team-damage-point">Player Team Damage Point</h3>
+<pre><code>host.PlayerTeamDamagePoint(playerObject, victimSoldierObject)¶
+</code></pre>
+<p>Occurs whenever a player damages another player on their own team.
+There is no indication of how much damage was done.</p>
+<h3 id="player-killed">Player Killed</h3>
+<pre><code>host.PlayerKilled(victimPlayerObject, attackerPlayerObject, weaponObject, assists, victimSoldierObject)
+</code></pre>
+<p>This event occurs when a player is “critically injured”, but still capable of being revived.
+If any players assisted in the kill,
+then “assists” will be a tuple of tuples: the top-level tuple will contain one lower-level tuple for each assisting player; the lower-level tuples will each have two elements:
+a playerObject for one of the assisting players, and a number indicating the type of assist
+(1=targeting assist, 2=kill damage assist, 3=driver assist).</p>
+<h3 id="player-revived">Player Revived</h3>
+<pre><code>host.PlayerRevived(revivedPlayerObject, medicPlayerObject)
+</code></pre>
+<p>Player has been revived from a “critically injured” condition to full health by a medic using “shock paddles”. Players can only be revived in the interval between a PlayerKilled() event and a subsequent PlayerDeath() event.</p>
+<h3 id="player-death">Player Death</h3>
+<pre><code>host.PlayerDeath(playerObject, soldierObject)
+</code></pre>
+<p>This event occurs when a player is decisively dead, and cannot be revived; they will only return to the game by respawning. soldierObject is the soldier “body” (which is now discarded) for the playerObject “spirit” (which will persist through the next spawn).</p>
+<h3 id="player-banned">Player Banned</h3>
+<pre><code> host.PlayerBanned(playerObject, time, type)¶
+</code></pre>
+<h3 id="player-kicked">Player Kicked</h3>
+<pre><code>host.PlayerKicked(playerObject)
+
+Player has been kicked off the server.
+</code></pre>
+<h3 id="player-disconnect">Player Disconnect</h3>
+<pre><code>host.PlayerDisconnect(playerObject)
+
+Player has disconnected from the server.
+</code></pre>
+<h2 id="vehicle-and-kit-events">Vehicle and Kit Events</h2>
+<h3 id="enter-vehicle">Enter Vehicle</h3>
+<pre><code>host.EnterVehicle(playerObject, vehicleObject[, freeSoldier])
+</code></pre>
+<p>Player represented by playerObject has entered the vehicle represented by vehicleObject. freeSoldier is 1 if the player is a passenger of the vehicle and is able to use weapons/objects of his kit. i.e. seat 4(+) of a black hawk.</p>
+<h3 id="exit-vehicle">Exit Vehicle</h3>
+<pre><code>host.ExitVehicle(playerObject, vehicleObject)
+</code></pre>
+<p>Player has exited a vehicle.</p>
+<h3 id="vehicle-destroyed">Vehicle Destroyed</h3>
+<pre><code>host.VehicleDestroyed(vehicleObject, attackerObject)
+</code></pre>
+<p>vehicleObject has been destroyed by attackerObject.</p>
+<h3 id="pickup-kit">Pickup Kit</h3>
+<pre><code>host.PickupKit(playerObject, kitObject)
+</code></pre>
+<p>Player has picked up a kit. This occurs both when a player physically picks up a kit, as well as when a player spawns.</p>
+<h3 id="drop-kit">Drop Kit</h3>
+<pre><code>ost.DropKit(playerObject, kitObject)
+</code></pre>
+<p>Player has dropped a kit; can occur either because a player has died, or because a player has picked up a different kit.</p>
+<h2 id="team-events">Team Events</h2>
+<h3 id="reset">Reset</h3>
+<pre><code>host.Reset(data)
+</code></pre>
+<p>TBD</p>
+<h3 id="changed-commander">Changed Commander</h3>
+<pre><code>host.ChangedCommander(teamID, oldCommanderPlayerObject, newCommanderPlayerObject)
+</code></pre>
+<p>Occurs when a team changes commanders; the old or new commander may be “None”.</p>
+<h3 id="changed-squad-leader">Changed Squad Leader</h3>
+<pre><code>host.ChangedSquadLeader(squadID, oldLeaderPlayerObject, newLeaderPlayerObject)
+</code></pre>
+<p>Occurs when a squad changes squad leaders; the old or new squad leader may be “None”.</p>
+<h2 id="game-events">Game Events</h2>
+<h3 id="control-point-changedowner">Control Point ChangedOwner</h3>
+<p>host.ControlPointChangedOwner(controlPointObject, attackingTeamID)</p>
+<p>TBD</p>
+<h3 id="time-limit-reached">Time Limit Reached</h3>
+<p>host.TimeLimitReached(value)</p>
+<p>Event fires when the fixed time limit for a round expires (not sure what “value” is)</p>
+<h3 id="ticket-limit-reached">Ticket Limit Reached</h3>
+<p>host.TicketLimitReached(team, limitID)</p>
+<p>TBD</p>
+<h2 id="command-events">Command Events</h2>
+<h3 id="console-send-command">Console Send Command</h3>
+<pre><code>host.ConsoleSendCommand(command, args)
+</code></pre>
+<p>This event is triggered by someone using the pythonHost.sendCommand console command. Unfortunately, this command/event mechanism appears to be disabled in non-ranked servers. (As a workaround, you can achieve a similar effect creating and registering your own custom RCon commands.</p>
+<h3 id="remote-command">Remote Command</h3>
+<pre><code>host.RemoteCommand(playerId, cmd)
+</code></pre>
+<p>Event fires when a game client gives an RCon (remote console) command. cmd is the command the player gave. This event is used by the admin module to receive and process RCon commands from players; RCon commands from TCP connections are received by the admin module directly, and do not fire this event.</p>
+<h3 id="client-command">Client Command</h3>
+<pre><code>host.ClientCommand(command, issuerPlayerObject, args)
+</code></pre>
+<p>This event occurs when a game client issues certain in-game commands. The only such commands identified so far are: command=100 means player wants to punish teammate for teamkill; command=101 means player wants to forgive. In both cases, args=1. This response is generated by the player responding to an on-screen prompt caused by a call to the bf2.gameLogic.sendClientCommand method.</p>
+<h2 id="miscellaneous-events">Miscellaneous Events</h2>
+<h3 id="player-unlocks-response">Player Unlocks Response</h3>
+<pre><code>host.PlayerUnlocksResponse(succeeded, player, unlocks)
+</code></pre>
+<p>Unlocks are requested and received asynchronously. This event is triggered when the response for player (which is an object of type Player) are received. If the ranking server did not successfully find the player in question, succeeded is set to false, else true. unlocks is a list of kit ids, which are 11, 22, 33 .. 77.</p>
+<h3 id="player-awards-response">Player Awards Response</h3>
+<p>host.PlayerAwardsResponse()</p>
+<pre><code>TBD
+</code></pre>
+<h3 id="chat-message">Chat Message</h3>
+<pre><code>host.ChatMessage(playerId, text, channel, flags)
+</code></pre>
+<p>channel is Squad, Team, Global, ServerTeamMessage or ServerMessage. Text is the text of the message sent, prefixed by HUD_TEXT_CHAT_TEAM or HUD_TEXT_CHAT_SQUAD if the message is sent to the Team or Squad channel; there is no prefix if it is sent to the Global channel. playerId is -1 for all server messages. If the player sending the message is dead, their message is also prefixed by HUD_CHAT_DEADPREFIX. (Strings such as HUD_TEXT_CHAT_TEAM, HUD_CHAT_DEADPREFIX, and so on, are used as keys by the game engine to match and replace with localized text.)</p>
+<h3 id="player-statsresponse">Player StatsResponse</h3>
+<pre><code>host.PlayerStatsResponse(succeeded, player, response)
+</code></pre>
+<p>TBD</p>
+<h3 id="update">Update</h3>
+<pre><code>host.Update(data)
+</code></pre>
+<p>TBD</p>
+<h2 id="non-standard-events">Non-Standard Events</h2>
+<h3 id="game-status-changed-event">Game Status Changed Event</h3>
+<pre><code>host.GameStatusChangedEvent(status)
+</code></pre>
+<p>This type of event is registered for with host.registerGameStatusHandler(). status is an integer status code enumerated by bf2.GameStatus.</p>
+<h3 id="trigger-event">Trigger Event</h3>
+<pre><code>host.TriggerEvent(triggerID, object, vehicle, enter, userData)
+</code></pre>
+<p>This type of event is registered for with bf2.triggerManager.createHemiSphericalTrigger or bf2.triggerManager.createRadiusTrigger; trigger triggerID is activated when vehicle comes within the preset radius of object.</p>
+<h3 id="timer-event">Timer Event</h3>
+<pre><code>host.TimerEvent(data)
+</code></pre>
+<p>This type of event fires when a timer established with bf2.Timer expires. “data” is an optional piece of information (of any type) that can be set when the timer is established.</p>
+<h2 id="mysterious-events">Mysterious Events</h2>
+<h3 id="read-me">read me</h3>
+<p>These strings were found in the server executable, and appear to be internal game engine events. They seem to not be accessible from Python, except in a few cases, where there is a correspondence between these “events” and Python events (e.g. “BeginRoundEvent” may be the same as “BeginRound”). For more information, see BF2 Internals.</p>
+<h3 id="remove-spawn-group-event">Remove Spawn Group Event</h3>
+<pre><code>host.RemoveSpawnGroupEvent()
+</code></pre>
+<h3 id="create-spawn-group-event">Create Spawn Group Event</h3>
+<pre><code>host.CreateSpawnGroupEvent()
+</code></pre>
+<h3 id="content-check-event">Content Check Event</h3>
+<pre><code>host.ContentCheckEvent()
+</code></pre>
+<h3 id="uav-event">UAV Event</h3>
+<pre><code>host.UAVEvent()
+</code></pre>
+<h3 id="missile-init-event">Missile Init Event</h3>
+<pre><code>host.MissileInitEvent()
+</code></pre>
+<h3 id="unlock-event">Unlock Event</h3>
+<pre><code>host.UnlockEvent()
+</code></pre>
+<h3 id="medal-event">Medal Event</h3>
+<pre><code>host.MedalEvent()
+</code></pre>
+<h3 id="toggle-free-camera-event">Toggle Free Camera Event</h3>
+<pre><code>host.ToggleFreeCameraEvent()
+</code></pre>
+<h3 id="voip-session-event">Voip Session Event</h3>
+<pre><code>host.VoipSessionEvent()
+</code></pre>
+<h3 id="request-event">Request Event</h3>
+<pre><code>host.RequestEvent()
+</code></pre>
+<h3 id="python-command-event">Python Command Event</h3>
+<pre><code>host.PythonCommandEvent()
+</code></pre>
+<h3 id="end-of-round-event">End Of Round Event</h3>
+<pre><code>host.EndOfRoundEvent()
+</code></pre>
+<h3 id="begin-round-event">Begin Round Event</h3>
+<pre><code>host.BeginRoundEvent()
+</code></pre>
+<h3 id="target-direction-event">Target Direction Event</h3>
+<pre><code>host.TargetDirectionEvent()
+</code></pre>
+<h3 id="vote-event">Vote Event</h3>
+<pre><code>host.VoteEvent()
+</code></pre>
+<h3 id="voip-player-mute-event">Voip Player Mute Event</h3>
+<pre><code>host.VoipPlayerMuteEvent()
+</code></pre>
+<h3 id="supply-drop-event">Supply Drop Event</h3>
+<pre><code>host.SupplyDropEvent()
+</code></pre>
+<h3 id="commander-cam-event">Commander Cam Event</h3>
+<pre><code>host.CommanderCamEvent()
+</code></pre>
+<h3 id="voip-onoff-event">Voip On/Off Event</h3>
+<pre><code>host.VoipOnOffEvent()
+</code></pre>
+<h3 id="ambient-effect-area-event">Ambient Effect Area Event</h3>
+<pre><code>host.AmbientEffectAreaEvent()
+</code></pre>
+<h3 id="sticky-projectile-event">Sticky Projectile Event</h3>
+<pre><code>host.StickyProjectileEvent()
+</code></pre>
+<h3 id="artillery-event">Artillery Event</h3>
+<pre><code>host.ArtilleryEvent()
+</code></pre>
+<h3 id="spotted-event">Spotted Event</h3>
+<pre><code>host.SpottedEvent()
+</code></pre>
+<h3 id="set-squad-leader-event">Set Squad Leader Event</h3>
+<pre><code>host.SetSquadLeaderEvent()
+</code></pre>
+<h3 id="set-accept-order-event">Set Accept Order Event</h3>
+<pre><code>host.SetAcceptOrderEvent()
+</code></pre>
+<h3 id="kickban-event">Kick/Ban Event</h3>
+<pre><code>host.KickBanEvent()
+</code></pre>
+<h3 id="rank-event">Rank Event</h3>
+<pre><code>host.RankEvent()
+</code></pre>
+<h3 id="invite-event">Invite Event</h3>
+<pre><code>host.InviteEvent()
+</code></pre>
+<h3 id="issue-squad-order-event">Issue Squad Order Event</h3>
+<pre><code>host.IssueSquadOrderEvent()
+</code></pre>
+<h3 id="set-private-squad-event">Set Private Squad Event</h3>
+<pre><code>host.SetPrivateSquadEvent()
+</code></pre>
+<h3 id="change-squad-name-event">Change Squad Name Event</h3>
+<pre><code>host.ChangeSquadNameEvent()
+</code></pre>
+<h3 id="killed-by-event">Killed By Event</h3>
+<pre><code>host.KilledByEvent()
+</code></pre>
+<h3 id="radio-message-event">Radio Message Event</h3>
+<pre><code>host.RadioMessageEvent()
+</code></pre>
+<h3 id="commander-event">Commander Event</h3>
+<pre><code>host.CommanderEvent()
+</code></pre>
+<h3 id="leave-squad-event">Leave Squad Event</h3>
+<pre><code>host.LeaveSquadEvent()
+</code></pre>
+<h3 id="join-squad-event">Join Squad Event</h3>
+<pre><code>host.JoinSquadEvent()
+</code></pre>
+<h3 id="string-block-event">String Block Event</h3>
+<pre><code>host.StringBlockEvent()
+</code></pre>
+<h3 id="handle-drop-event">Handle Drop Event</h3>
+<pre><code>host.HandleDropEvent()
+</code></pre>
+<h3 id="handle-pickup-event">Handle Pickup Event</h3>
+<pre><code>host.HandlePickupEvent()
+</code></pre>
+<h3 id="change-player-name-event">Change Player Name Event</h3>
+<pre><code>host.ChangePlayerNameEvent()
+</code></pre>
+<h3 id="post-remote-event">Post Remote Event</h3>
+<pre><code>host.PostRemoteEvent()
+</code></pre>
+<h3 id="exit-vehicle-event">Exit Vehicle Event</h3>
+<pre><code>host.ExitVehicleEvent()
+</code></pre>
+<h3 id="enter-vehicle-event">Enter Vehicle Event</h3>
+<pre><code>host.EnterVehicleEvent()
+</code></pre>
+<h3 id="destroy-player-event">Destroy Player Event</h3>
+<pre><code>host.DestroyPlayerEvent()
+</code></pre>
+<h3 id="destroy-object-event">Destroy Object Event</h3>
+<pre><code>host.DestroyObjectEvent()
+</code></pre>
+<h3 id="create-kit-event">Create Kit Event</h3>
+<pre><code>host.CreateKitEvent()
+</code></pre>
+<h3 id="create-object-event">Create Object Event</h3>
+<pre><code>host.CreateObjectEvent()
+</code></pre>
+<h3 id="create-player-event">Create Player Event</h3>
+<pre><code>host.CreatePlayerEvent()
+</code></pre>
+<h3 id="data-block-event">Data Block Event</h3>
+<pre><code>host.DataBlockEvent()
+</code></pre>
+<h3 id="connection-type-event">Connection Type Event</h3>
+<pre><code>host.ConnectionTypeEvent()
+</code></pre>
+<h3 id="challenge-response-event">Challenge Response Event</h3>
+<pre><code>host.ChallengeResponseEvent()
+</code></pre>
+<h3 id="challenge-event">Challenge Event</h3>
+<pre><code>host.ChallengeEvent()
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../bf2/" class="btn btn-neutral float-right" title="bf2">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>formated by ASH taked from Project Reality’s Official Documentation</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../bf2/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Common Issues - pr docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Common Issues";
+        var mkdocs_page_input_path = "Issues.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> pr docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../events/">Events</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bf2/">bf2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../hudevent/">Hud Event</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cf/">Community Factions</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Common Issues</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#renddx9-error">RendDX9 Error</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#intel-core">Intel Core</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#warning">Warning</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#memorydll-crashes-after-play-sessions">memory.dll Crashes After Play Sessions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#experimental-fix">Experimental Fix</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cannot-hear-anything">Cannot Hear Anything</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#performance-slowly-degrades-overtime">Performance Slowly Degrades Overtime</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#low-performance-on-ryzen-cpus">Low Performance on Ryzen CPUs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#launched-into-an-infinite-black-screen">Launched Into an Infinite Black Screen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#stuck-on-joining-server">Stuck on “Joining Server”</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#persistent-skippingstuttering">Persistent Skipping/Stuttering</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">pr docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Common Issues</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="common-issues">Common Issues</h2>
+<h3 id="renddx9-error">RendDX9 Error</h3>
+<h4 id="intel-core">Intel Core</h4>
+<ul>
+<li>
+<p><strong>PCs or Laptops with a Discrete GPU</strong></p>
+<ul>
+<li>Navigate Windows Settings ‣ Graphics Settings</li>
+<li>Switch <code>prbf2.exe</code> to run on the Discrete GPU</li>
+</ul>
+</li>
+<li>
+<p><strong>PCs or Laptops with no Discrete GPU</strong></p>
+<ul>
+<li>Update your Intel Xe/ARC Graphics driver.</li>
+<li><a href="https://www.intel.com/content/www/us/en/download/785597/intel-arc-iris-xe-graphics-windows.html">Download Link</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="warning">Warning</h4>
+<p>Issue prevalent on the following:
+- Intel Core 11th gen and newer
+- Intel N100 and other N-series
+- Pentium G7xxx series
+- Intel ARC Alchemist dGPUs</p>
+<h3 id="memorydll-crashes-after-play-sessions">memory.dll Crashes After Play Sessions</h3>
+<p>Happens due to some unknown differences in the way GPU drivers allocate memory, hence why some players might not encounter this error at all.</p>
+<h4 id="experimental-fix">Experimental Fix</h4>
+<ul>
+<li>Use DXVK and enable the config <code>d3d9.deviceLossOnFocusLoss = True</code>. DXVK has a built-in mapped memory, making longer sessions less prone to crashes, but there are still some bugs with DXVK; hence why this is marked as experimental.</li>
+<li><a href="https://github.com/doitsujin/dxvk">DXVK GitHub</a></li>
+</ul>
+<h3 id="cannot-hear-anything">Cannot Hear Anything</h3>
+<ul>
+<li>Disable positional audio inside Mumble’s settings<ul>
+<li>Might work, might not</li>
+</ul>
+</li>
+<li>Plug your headphone via the included USB cable</li>
+<li>Buy a backup wired audio for PR purposes<ul>
+<li>I personally recommend cheap Chinese in-ear monitors for PR.</li>
+</ul>
+</li>
+</ul>
+<h3 id="performance-slowly-degrades-overtime">Performance Slowly Degrades Overtime</h3>
+<ul>
+<li>Your PC might need a thorough cleaning and a repaste.</li>
+<li>Set a more aggressive fan curve to keep CPU turbo clocks high.</li>
+</ul>
+<h3 id="low-performance-on-ryzen-cpus">Low Performance on Ryzen CPUs</h3>
+<ul>
+<li>Enable CPPC and CPPC-preferred cores.</li>
+<li>Enable CPB (Core Performance Boost) and PBO.</li>
+<li>BIOS’ advanced menu ‣ AMD CBS ‣ Zen/CPU common options menu<ul>
+<li>Enable the following:<ul>
+<li>L1 &amp; L2 Cache Hardware Prefetcher</li>
+<li>Streaming Stores Control</li>
+<li>OPcache Control</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="launched-into-an-infinite-black-screen">Launched Into an Infinite Black Screen</h3>
+<ul>
+<li>Make sure that there’s no 3rd party antivirus that’s blocking PR.</li>
+<li>Launch PR with an offline profile; if it works then something is wrong with your network, try a VPN or consult your ISP.</li>
+</ul>
+<h3 id="stuck-on-joining-server">Stuck on “Joining Server”</h3>
+<p>Stems from multiple possible issues:
+- <strong>Network issue on player’s end</strong>
+    - Switch to wired ethernet
+    - Try a VPN
+    - Complain to your ISP</p>
+<ul>
+<li><strong>PR is placed on an external drive that’s not formatted in NTFS</strong><ul>
+<li>Reformat your drive to NTFS or place it back to your internal drive.</li>
+</ul>
+</li>
+</ul>
+<h3 id="persistent-skippingstuttering">Persistent Skipping/Stuttering</h3>
+<p>Possible Solutions:
+- Switch to wired ethernet.
+- Switch to a newer WiFi protocol that has a higher frequency.
+    - Make sure your router and PC/laptop supports it!</p>
+<p>If you can’t do either of those:
+- Make sure that your WiFi is at least on a less-crowded channel.
+- Increase your transmit power.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cf/" class="btn btn-neutral float-left" title="Community Factions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>formated by ASH taked from Project Reality’s Official Documentation</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cf/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

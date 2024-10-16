@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Hud Event - pr docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Hud Event";
+        var mkdocs_page_input_path = "hudevent.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> pr docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../events/">Events</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../bf2/">bf2</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Hud Event</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#event-by-number">Event by Number</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#note">Note</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cf/">Community Factions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Issues/">Common Issues</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">pr docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Hud Event</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="hudevent">HudEvent</h2>
+<p>Detailed information about the <code>bf2.gameLogic.sendHudEvent</code></p>
+<h3 id="event-by-number">Event by Number</h3>
+<ul>
+<li><strong>Close To Control Point</strong></li>
+<li><strong>Hud State Changed</strong></li>
+<li><strong>Hud Disable</strong></li>
+<li><strong>Hud Enable</strong></li>
+<li><strong>Init Loading Screen</strong></li>
+<li><strong>Update Loading Screen</strong></li>
+<li><strong>Set Loading Screen Debug</strong></li>
+<li><strong>Remove Loading Screen</strong></li>
+<li><strong>Map Zoom Changed</strong></li>
+<li><strong>Map Static Changed</strong></li>
+<li><strong>Squad Is Full</strong></li>
+<li><strong>Squad Is Private</strong></li>
+<li><strong>Squad Creation Failed</strong></li>
+<li><strong>Squad Creation Success</strong></li>
+<li><strong>Squad Invalid Name</strong></li>
+<li><strong>Squad Invitation</strong></li>
+<li><strong>Squad Join Request</strong></li>
+<li>
+<p><strong>Squad Join Request Denied</strong></p>
+<ul>
+<li><strong>Data:</strong> 0 - 7</li>
+<li><strong>Data name:</strong> Squad ID</li>
+<li><strong>Results:</strong> This event causes a "Your request to join #SQUADNAME# squad has been denied" message. The squad name changes depending on the supplied Squad ID.</li>
+</ul>
+</li>
+<li>
+<p><strong>Squad Join Request Accepted</strong></p>
+<ul>
+<li><strong>Data:</strong> 0 - 7</li>
+<li><strong>Data name:</strong> Squad ID</li>
+<li><strong>Results:</strong> This event causes a "Your request to join #SQUADNAME# squad has been accepted" message. The squad name changes depending on the supplied Squad ID.</li>
+</ul>
+</li>
+<li>
+<p><strong>Kicked From Squad</strong></p>
+<ul>
+<li><strong>Data:</strong> 0 - 255</li>
+<li><strong>Data name:</strong> Player ID</li>
+<li><strong>Results:</strong> This event causes a kicked from squad message, saying either "... has been kicked from your squad." or "You have been kicked from your squad," depending on the player ID.</li>
+</ul>
+</li>
+<li>
+<p><strong>Left Squad</strong></p>
+<ul>
+<li><strong>Data:</strong> 0 - 255</li>
+<li><strong>Data name:</strong> Player ID</li>
+<li><strong>Results:</strong> This event causes a player left squad message, saying "... has left your squad." This message will only work if the player it is sent to is in a squad. Nothing happens if the player ID is the player the message was sent to.</li>
+</ul>
+</li>
+<li>
+<p><strong>Joined Squad</strong></p>
+<ul>
+<li><strong>Data:</strong> 0 - 255</li>
+<li><strong>Data name:</strong> Player ID</li>
+<li><strong>Results:</strong> This event causes a player joined squad message, saying "... has joined your squad." This message will only work if the player it is sent to is in a squad. Nothing happens if the player ID is the player the message was sent to.</li>
+</ul>
+</li>
+<li>
+<p><strong>Squad Orders Received</strong></p>
+<ul>
+<li><strong>Data:</strong> 0 - 255</li>
+<li><strong>Data name:</strong> Player ID</li>
+<li><strong>Results:</strong> This event causes an order received message, saying "You have received a new order from your squad leader." Player ID seems to have no effect on the message. Does nothing if the player message is sent to is the squad leader.</li>
+</ul>
+</li>
+<li>
+<p><strong>New Squad Leader</strong></p>
+<ul>
+<li><strong>Data:</strong> 0 - 255</li>
+<li><strong>Data name:</strong> Player ID</li>
+<li><strong>Results:</strong> This event causes a new squad leader message, saying either "... is your new squad leader" or "You are the new squad leader," depending on the player ID.</li>
+</ul>
+</li>
+<li>
+<p><strong>Squad Leader Request</strong></p>
+</li>
+<li><strong>Commander Orders Received</strong></li>
+<li><strong>Commander Orders Sent</strong></li>
+<li><strong>Squad Orders Sent</strong></li>
+<li><strong>Request Received</strong></li>
+<li><strong>Request Sent</strong></li>
+<li><strong>Update Hud</strong></li>
+<li><strong>Weapon Changed</strong></li>
+<li><strong>Commander Accept</strong></li>
+<li><strong>Commander Decline</strong></li>
+<li><strong>Commander Invitation</strong></li>
+<li><strong>Squad Leader Invitation</strong></li>
+<li><strong>Commander Resign</strong></li>
+<li><strong>Rank Change</strong></li>
+<li><strong>Medal Reward</strong></li>
+<li><strong>UAV</strong></li>
+<li><strong>Satellite</strong></li>
+<li><strong>Artillery</strong></li>
+<li><strong>Unit Spotted</strong></li>
+<li><strong>Missile Lock</strong></li>
+<li><strong>New Unlock</strong></li>
+<li><strong>Call For Medic</strong></li>
+<li><strong>Call For Ammo</strong></li>
+<li><strong>Call For Repair</strong></li>
+<li><strong>Call For Revive</strong></li>
+<li><strong>Auto Call For Revive</strong></li>
+<li><strong>Radio Call</strong></li>
+<li><strong>Was Hit</strong></li>
+<li><strong>Possibly Not Used</strong></li>
+<li><strong>Possibly Not Used</strong></li>
+<li><strong>Possibly Not Used</strong></li>
+<li><strong>Possibly Not Used</strong></li>
+<li><strong>Is Close To Mine</strong><ul>
+<li><strong>Data:</strong> 0 - 255</li>
+<li><strong>Data name:</strong> Player ID</li>
+</ul>
+</li>
+<li><strong>Not Close To Mine</strong><ul>
+<li><strong>Data:</strong> 0 - 255</li>
+<li><strong>Data name:</strong> Player ID</li>
+</ul>
+</li>
+<li><strong>Muted By Remote</strong></li>
+<li><strong>Possibly Not Used</strong></li>
+<li><strong>TK Option</strong></li>
+<li><strong>TK Response</strong></li>
+<li><strong>Possibly Not Used</strong></li>
+<li><strong>Control Point Taken</strong></li>
+<li><strong>Control Point Lost</strong></li>
+<li><strong>Enable Help Message</strong><ul>
+<li><strong>Data:</strong> 49</li>
+<li><strong>Data name:</strong> Exit To Capture Flag</li>
+</ul>
+</li>
+<li><strong>Enable Help</strong></li>
+<li><strong>Possibly Not Used</strong></li>
+<li><strong>Possibly Not Used</strong></li>
+<li><strong>Ticket Bleed</strong></li>
+<li><strong>Ticket State Changed</strong></li>
+<li><strong>Begin Round</strong></li>
+<li><strong>Possibly Not Used</strong></li>
+<li><strong>Possibly Not Used</strong></li>
+<li><strong>Map Change Complete</strong></li>
+<li><strong>Map Zoom Complete</strong></li>
+</ul>
+<h3 id="note">Note</h3>
+<p>Some HUD events may cause informative messages to be sent to players in-game, but the HUD event does not cause these events to happen; instead, it only sends the message that would be sent if that event did happen.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../bf2/" class="btn btn-neutral float-left" title="bf2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cf/" class="btn btn-neutral float-right" title="Community Factions">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>formated by ASH taked from Project Reality’s Official Documentation</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../bf2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cf/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

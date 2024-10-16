@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>bf2 - pr docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "bf2";
+        var mkdocs_page_input_path = "bf2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> pr docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../events/">Events</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">bf2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#player">Player</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#player-manager">Player Manager</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#timer">Timer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#game-status_1">Game Status</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#game-logic">Game Logic</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#server-settings">Server Settings</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#objectmanager">ObjectManager</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#player-manager_1">Player Manager</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#trigger-manager">Trigger Manager</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#constants">constants</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../hudevent/">Hud Event</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cf/">Community Factions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Issues/">Common Issues</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">pr docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">bf2</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="game-status">Game Status</h2>
+<h3 id="player">Player</h3>
+<p>class bf2.PlayerManager.Player</p>
+<pre><code>An object of this class is created for each player in the game. When they are initialized, Player objects automatically instantiate a PlayerScore object and assign it to their score attribute.
+
+You must import bf2.PlayerManager if you wish to create objects of this class; normally, however, you will just access methods and attributes of already existing Player objects that are returned to you by other calls, which requires no special import statement.
+Instance creation
+
+x = bf2.PlayerManager.Player(index)
+
+index
+
+    playerID for this player.
+
+score
+
+    Current score for this player.
+
+isValid()
+
+isRemote()
+
+isAIPlayer()
+
+isAlive()
+
+isManDown()
+
+isConnected()
+
+getProfileId()
+
+isFlagHolder()
+
+getTeam()
+
+setTeam(t)
+
+getPing()
+
+    Returns:
+
+        The player’s ping (network transit time from player to server and back) in milliseconds
+
+getSuicide()
+
+    Returns:
+
+        1 if the player suicided (resets once the player spawns)
+
+setSuicide(t)
+
+getTimeToSpawn()
+
+    Returns:
+
+        The number of seconds until they are allowed to spawn
+    Returns:
+
+        0 when a player is spawned in; when a player is waiting to spawn
+
+setTimeToSpawn(t)
+
+    Appears to generate an exception if used on a player that is already spawned in; if used on a player that that is waiting to spawn it changes the time until they are allowed to spawn.
+
+getSquadId()
+
+    Squads for each team are independently numbered beginning at 1 and increasing thereafter. Players not on a squad, including team commanders, are assigned to squad 0.
+
+    Returns:
+
+        The player’s squad ID
+
+isSquadLeader()
+
+    Returns:
+
+        1 if player is a squad leader
+
+isCommander()
+
+    Returns:
+
+        1 if player is currently the commander
+
+getName()
+
+    Returns:
+
+        Player’s name
+
+setName(name)
+
+    Sets a player’s name (at least, it changes what getName() returns), but the change doesn’t show up in-game–everything in the game still shows the player’s old name.
+
+    It is working, but only sees that player who connected after the name change.
+
+getSpawnGroup()
+
+setSpawnGroup(t)
+
+getKit()
+
+    Returns:
+
+        The current player’s kit object
+
+getVehicle()
+
+    Returns:
+
+        The current player’s vehicle object
+    Returns:
+
+        The player’s soldier object if the player is not in a vehicle at the time
+
+getDefaultVehicle()
+
+    Returns:
+
+        The player’s soldier object, no matter what vehicle they are in
+
+getPrimaryWeapon()
+
+    Returns:
+
+        The weapon object for the player’s currently selected weapon
+
+getAddress()
+
+    Returns:
+
+        The player’s IP address
+
+setIsInsideCP(val)
+
+getIsInsideCP()
+</code></pre>
+<h3 id="player-manager">Player Manager</h3>
+<p>class bf2.PlayerManager</p>
+<pre><code>This class is a wrapper around some player management functions in the BF2 engine, and also adds some simple calculations and logic to those functions. During its initialization the bf2 class instantiates this class as the singleton object bf2.playerManager.
+
+You must import bf2 to access the methods and attributes of this object.
+
+getNumberOfPlayers()
+
+getCommander(team)
+
+getPlayers()
+
+getPlayerByIndex(index)
+
+getNextPlayer(index)
+
+getNumberOfPlayersInTeam(team)
+
+getNumberOfAlivePlayersInTeam(team)
+
+enableScoreEvents()
+
+    Enables PlayerScore events
+
+disableScoreEvents()
+
+    Disables PlayerScore events
+</code></pre>
+<h3 id="timer">Timer</h3>
+<p>class bf2.Timer</p>
+<pre><code>(Not available in PR, use the realitytimer below.)
+
+Objects in this class are timers that can cause timer events to be generated when a fixed amount of time has elapsed.
+
+bf2.Timer(timerEventHandler, delta, alwaysTrigger, data)
+
+        Note that even though data is optional when establishing a timer, the timerEventHandler must specify it as a parameter, or the handler won’t work.
+
+        You must import bf2.Timer to create timer objects.
+
+    Parameters:
+
+            timerEventHandler – Handler to be called when delta seconds have elapsed since the creation of the timer.
+
+            alwaysTrigger – Should be 1 (not sure what the alternative is)
+
+            data – Optional item (typically a tuple) that will be passed to timerEventHandler.
+
+destroy()
+
+    Destroys the associated game engine timer (but not the Python instance.)
+
+getTime()
+
+    Returns:
+
+        The wall time at which this timer will fire
+
+setTime(time)
+
+    Changes the wall time at which this timer will fire.
+
+setRecurring(interval)
+
+    Specifies this this timer should fire repeatedly, every interval seconds.
+
+onTrigger()
+
+    For internal use only; calls timerEventHandler.
+</code></pre>
+<p>class realitytimer.py</p>
+<pre><code>Project Reality timer (realitytimer.py) expands the default interface with the following:
+
+    Exception catching with a debug message when an exception is not caught in the handler
+
+        No need to worry about bad code crashing the server.
+
+    Internal check to make sure timers don’t fire after bf2.Timer.destroy() was called
+
+        Can happen when bf2.Timer.destroy() is called on the same tick
+
+fireOnce(targetFunc, delay, data=None)
+
+    Class that can fire an event once after delay and then destroy itself. No need to store reference.
+
+fireNextTick(targetFunc, data=None)
+
+    Class that will fire the event at the next game tick and then destroy itself. No need to store reference
+</code></pre>
+<h3 id="game-status_1">Game Status</h3>
+<pre><code>class bf2.GameStatus
+
+Playing
+
+EndGame
+
+PreGame
+
+Paused
+
+RestartServer
+
+NotConnected
+</code></pre>
+<p>Just used as a container for the constant values returned by callbacks from the GameStatusChanged event</p>
+<h3 id="game-logic">Game Logic</h3>
+<pre><code>class bf2.GameLogic.GameLogic
+
+methods :
+
+getModDir()
+
+getMapName()
+
+getWorldSize()
+
+getTeamName(team)
+
+isAIGame()
+
+sendClientCommand(playerId, command, args)
+
+sendGameEvent(playerObject, event, data)
+
+sendMedalEvent(playerObject, type, value)
+
+sendRankEvent(playerObject, rank, score)
+
+sendHudEvent(playerObject, event, data)
+
+sendServerMessage(playerId, message)
+
+getTicketState(team)
+
+setTicketState(team, value)
+
+getTickets(team)
+
+setTickets(team, value)
+
+getDefaultTickets(team)
+
+getTicketChangePerSecond(team)
+
+setTicketChangePerSecond(team, value)
+
+getTicketLimit(team, id)
+
+setTicketLimit(team, id, value)
+
+getDefaultTicketLossPerMin(team)
+
+getDefaultTicketLossAtEndPerMin()
+
+getWinner()
+
+getVictoryType()
+
+setHealPointLimit(value)
+
+setRepairPointLimit(value)
+
+setGiveAmmoPointLimit(value)
+
+setTeamDamagePointLimit(value)
+
+setTeamVehicleDamagePointLimit(value)
+</code></pre>
+<p>A wrapper around lots of BF2 engine stuff accessible through host, apparently to make it more Pythonic. During its initialization the bf2 class instantiates this class as the singleton object bf2.gameLogic.
+You must import bf2 to access the methods and attributes of this object.</p>
+<h3 id="server-settings">Server Settings</h3>
+<p>Another wrapper around more BF2 engine stuff that’s accessible through host; this class makes it accessing these things cleaner and more Pythonic. During its initialization the bf2 class instantiates this class as the singleton object bf2.serverSettings.</p>
+<pre><code>class bf2.GameLogic.ServerSettings
+
+
+You must import bf2 to access the methods and attributes of this object.
+
+getTicketRatio()
+
+getTeamRatioPercent()
+
+getMaxPlayers()
+
+getGameMode()
+
+getMapName()
+
+getTimeLimit()
+
+getScoreLimit()
+
+getAutoBalanceTeam()
+
+getTKPunishEnabled()
+
+getTKNumPunishToKick()
+
+getTKPunishByDefault()
+
+getUseGlobalRank()
+
+getUseGlobalUnlocks()
+</code></pre>
+<p>You cannot find out server name, port and other similar information this way. Instead, use f.e. host.rcon_invoke('sv.serverName') to get the server name.</p>
+<h3 id="objectmanager">ObjectManager</h3>
+<p>class bf2.ObjectManager.ObjectManager</p>
+<pre><code>getObjectsOfType(object type)
+
+getObjectsOfTemplate(object template)
+</code></pre>
+<p>During its initialization the bf2 class instantiates this class as the singleton object bf2.objectManager. This object can be used by Python to get access to internal game engine C++ objects. A list of the available object types can be found here.</p>
+<p>You must import bf2 to access the methods and attributes of this object.</p>
+<h3 id="player-manager_1">Player Manager</h3>
+<pre><code>class bf2.PlayerManager.PlayerScore
+</code></pre>
+<p>Objects of this class maintain a long list of player score attributes. They are used inside of objects of the Player class; for any Player object x, x.score is an object of class PlayerScore.</p>
+<p>You will not normally create objects of this class; they are created automatically as part of the Player class when Player objects are created. No special imports are necessary to access methods and attributes of these objects.</p>
+<p>There is also a separate player.stats object, which tracks different information. You can use the following code fragment to see all of the variables in the player.stats object.</p>
+<pre><code>for s in vars(player.stats):
+   print str(s)
+
+reset()
+
+    Resets all score attributes stored within the object itself.
+
+index
+
+heals
+
+ammos
+
+repairs
+
+damageAssists
+
+passengerAssists
+
+driverAssists
+
+targetAssists
+
+driverSpecials
+
+revives
+
+teamDamages
+
+teamVehicleDamages
+
+cpCaptures
+
+cpDefends
+
+cpAssists
+
+suicides
+
+cpNeutralizes
+
+cpNeutralizeAssists
+
+rplScore
+
+    This attribute may not be in all versions of BF2
+
+skillScore
+
+cmdScore
+</code></pre>
+<p>Class attributes stored in the BF2 engine
+                deaths,
+                kills,
+                TKs,score,
+                skillScore,
+                rplScore,
+                cmdScore,
+                fracScore,
+                rank,
+                firstPlace,
+                secondPlace,
+                thirdPlace,
+                bulletsFired</p>
+<p>Gives a tuple, each element of which is a 2-tuple consisting of the name of a weapon the player has fired, and the number of shots they fired from that weapon. As the player uses more weapons, more of the 2-tuples are added to the list. An example tuple returned:</p>
+<p>(("uspi-m16", 30), ("knife", 3))</p>
+<p>Before the first weapon is fired, this may be None or an empty tuple. The first weapon fired will not always be the first 2-tuple on the list returned.</p>
+<p>bulletsGivingDamage</p>
+<p>Same as above, but only with bullets giving damage</p>
+<p>bulletsFiredAndClear</p>
+<p>The “AndClear” resets the engine counter. polling this will only give new bullets. However having more than one module polling them is not a good idea.</p>
+<p>bulletsGivingDamageAndClear</p>
+<p>dkRatio</p>
+<h3 id="trigger-manager">Trigger Manager</h3>
+<pre><code>class bf2.TriggerManager.TriggerManager
+</code></pre>
+<p>This class is a wraper around some player management functions in the BF2 engine. During its initialization the bf2 class instantiates this class as the singleton object bf2.triggerManager. This object is used to manage “triggers”, which are events that are fired when a PCO enters a defined spherical or hemispherical volume surrounding an object.</p>
+<p>You must import bf2 to access the methods and attributes of this object.</p>
+<pre><code>createRadiusTrigger(object, callback, objName, radius, data=None)
+</code></pre>
+<p>Creates a trigger that causes callback to be called if a player enters a spherical region of radius radius centered on object, passing data as an argument.</p>
+<pre><code>createHemiSphericalTrigger(object, callback, objName, radius, data=None)
+</code></pre>
+<p>Same as createRadiusTrigger(), except that instead of a spherical trigger region, the trigger region is a flat circle lying along the ground (yes, it’s badly named).</p>
+<pre><code>destroyAllTriggers()
+
+    Destroys all registered triggers.
+
+destroy(trig_id)
+
+    Destroys a specific trigger.
+
+getObjects(trig_id)
+
+    Returns:
+
+        A tuple containing all objects currently within the specified trigger region
+</code></pre>
+<h3 id="constants">constants</h3>
+<pre><code>class bf2.stats.constants
+</code></pre>
+<p>This module appears intended to be imported with something like…</p>
+<p>from bf2.stats.constants import *</p>
+<p>so that everything in it is loaded into the local namespace, rather than being a part of any object. The module includes a lot of constants and dictionaries, as well as some utility functions.</p>
+<pre><code>getVehicleType(templateName)
+
+getWeaponType(templateName)
+
+getKitType(templateName)
+
+getArmy(templateName)
+
+getMapId(mapName)
+
+getGameModeId(gameMode)
+
+getRootParent(physicalObject)
+
+    Traverses the containment for physicalObject all the way to the top
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../events/" class="btn btn-neutral float-left" title="Events"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../hudevent/" class="btn btn-neutral float-right" title="Hud Event">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>formated by ASH taked from Project Reality’s Official Documentation</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../events/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../hudevent/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
