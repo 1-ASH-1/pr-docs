@@ -1,0 +1,13 @@
+site_name: pr docs
+nav:
+    - Home: index.md  # This is the homepage file
+    - Events: events.md
+    - bf2   : bf2.md
+    - Hud Event : hudevent.md
+    - Community Factions : cf.md
+    - Common Issues : Issues.md
+    
+theme: readthedocs
+
+copyright:
+    formated by ASH taked from Project Reality’s Official Documentation
